@@ -1,4 +1,4 @@
-<p align="center">
+<img width="1527" alt="Screenshot 2025-06-07 at 10 44 46 AM" src="https://github.com/user-attachments/assets/cdf00331-b26a-4946-ae01-ea7dc506f5a5" /><p align="center">
 <img width="450" height="250" alt="Microsoft Active Directory Logo" src="https://github.com/user-attachments/assets/cd75c7f5-fba1-4682-a616-dc487e761fbc"
  alt="Microsoft Active Directory Logo"/>
 </p>
@@ -27,71 +27,116 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 
 <h2>🪜 High-Level Steps</h2>
 
-- Section 1: Create User Database
+- Section 1: Create a User Database
 - Section 2: Group Policy Objects 
 
 <h2>Deployment and Configuration Steps</h2>
 
-<h3>🛠️ Step 1: Create User Database</h3>
+<h3>🛠️ Step 1: Create a User Database</h3>
+
 <p>
-<img width="600" height="500" alt="CU1" src="https://github.com/user-attachments/assets/78ca0b79-47d2-4c1a-8c41-a143b8680c6d" />
+<img width="788" alt="Screenshot 2025-06-07 at 10 35 35 AM" src="https://github.com/user-attachments/assets/2883ce72-a9c8-4634-9861-084259803c08" />
+<img width="457" alt="Screenshot 2025-06-07 at 10 37 17 AM" src="https://github.com/user-attachments/assets/4348781e-e580-4e46-a954-411723c1fe93" />
+
 </p>
 
 <p>
-- Login into DC-1 via Remote Desktop using the jane_admin account. (mydomain.com\jane_admin and password)
-<p>- From the Start Menu, type PowerShell in the Search Bar, right-click Windows PowerShell ISE, and Run as Admin.</p>
+- Log in into DC-1 with Remote Desktop/Windows App with the jane_admin account. (mydomain.com\jane_admin and password)
+</p>
+<p>
+ - From the Start Menu, type PowerShell in the search bar. Right-click Windows PowerShell ISE. Then click "Run as Admin".
+</p>
+<p>
+ A window will pop up asking if you want to allow this app to make cahnges to your device. Click "Yes" to run Windows PowerShell ISE.
+</p>
 <br />
 
 <p>
-<img width="750" alt="CU2" src="https://github.com/user-attachments/assets/ab10520f-6366-401e-bdd2-576e982c1efd" />
+ <img width="938" alt="Screenshot 2025-06-07 at 10 42 41 AM" src="https://github.com/user-attachments/assets/644a7238-2ee8-4e78-98e7-d0c974f61a8f" />
+
+</p>
 <br />
 
-- Click here --> [SCRIPT](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) to copy the file we need for the User database as seen in Figure 2.
+- Click here --> [SCRIPT](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) to copy the file we need to create our user database.
 
-<p>- Select the icon next to Raw in the top right corner. Copy raw file and go back to PowerShell ISE.</p>
+<p>
+ - Click the icon next to Raw in the top right corner to copy the raw file. Go back to PowerShell ISE.</p>
 <br />
 
 <p>
-<img width="750" alt="CU3" src="https://github.com/user-attachments/assets/9dd1f6f1-366a-41fb-9293-069c852967d7" />
+<img width="1527" alt="Screenshot 2025-06-07 at 10 44 46 AM" src="https://github.com/user-attachments/assets/7f248dbc-65e2-450c-a6e9-1f2e1b160b8a" />
+<img width="1527" alt="Screenshot 2025-06-07 at 10 45 17 AM" src="https://github.com/user-attachments/assets/90b6a857-7040-4d20-ae19-728d306e2128" />
+<img width="1525" alt="Screenshot 2025-06-07 at 10 45 31 AM" src="https://github.com/user-attachments/assets/f4c78441-817d-4400-a504-9bcdaaa666e5" />
+<img width="1523" alt="Screenshot 2025-06-07 at 10 45 53 AM" src="https://github.com/user-attachments/assets/5a8d10a8-c930-4048-8174-69bbcd99b38e" />
 </p>
 
-<p>- 1. Click the blank page to Create a new file.</p>
-<p>- 2. Paste the Script .</p>
-<p>- 3. Click the Play button to Run the Script.</p>
+<p>
+ - In PowerShell ISE, click the blank page icon at the top.
+</p>
+<p>
+ - Paste in the script you copied in the space that pops up.
+</p>
+<p>
+ - Click the green play button icon at the top to run the script. We should be able to see the users being created after we start running the script.
+</p>
 <br />
 
 <p>
-<img width="750" alt="CU4" src="https://github.com/user-attachments/assets/3a74ba58-8578-438a-80f9-7d68d63c1843" />
+<img width="1523" alt="Screenshot 2025-06-07 at 10 45 53 AM" src="https://github.com/user-attachments/assets/81a56a20-cfef-4b22-adc7-bc6bdebcb79d" />
 </p>
 
-<p>- While the thousands of users are being created, take a quick note of the password in the 2nd line of the script. This password is for all the users we are adding. We will need this when we attempt to login as one of the new users.</p>
+<p>
+ - While the users are being created, take a note of the password in the 2nd line of the script. This it the password for all the users we are creating in the database. We will need this when we try to log in as one of the new users.
+</p>
 <br />
 
 <p>
-<img width="750" alt="CU5" src="https://github.com/user-attachments/assets/b87b5323-61dd-4174-af96-995018e43893" />
+<img width="789" alt="Screenshot 2025-06-07 at 11 02 45 AM" src="https://github.com/user-attachments/assets/1e20f028-d063-4c4c-9dc4-ccc403a8caa8" />
+<img width="978" alt="Screenshot 2025-06-07 at 11 03 07 AM" src="https://github.com/user-attachments/assets/d6883871-4ab5-4fc6-ba86-186c3d49b451" />
+<img width="752" alt="Screenshot 2025-06-07 at 11 03 19 AM" src="https://github.com/user-attachments/assets/0dbcdf59-4ef5-47c8-96ce-8f725d5c03d1" />
+<img width="751" alt="Screenshot 2025-06-07 at 11 03 42 AM" src="https://github.com/user-attachments/assets/0cd4947d-ea9e-4ae4-8d92-359642c79585" />
 </p>
 
-<p>- We should have enough users by now to attempt to login on Client-1 with their credentials.</p>
-<p>- Let the script keep running and head to the Start Menu. From here, navigate to Avctive Directory Users and Computers.</p>
-<p>- Click OK and select the _EMPLOYEES folder to check out all the users created so far.</p>
+<p>
+ - Once the script is finished running, from the start menu, open Active Directory Users and Computers.</p>
+<p>
+ - A window will pop up saying something about items in the _EMPLOYEES folder were retrieved. Click "OK".
+</p>
+<p>
+ - Select the _EMPLOYEES folder to see all the users created so far. Optionally, click the refresh icon at the top to put them in alphabetical order.
+</p>
 <br />
 
 <p>
-<img width="750" alt="CU6" src="https://github.com/user-attachments/assets/f2ffba9f-88ac-4ca6-b7ab-aa5003c059e5" />
+<img width="751" alt="Screenshot 2025-06-07 at 11 03 49 AM" src="https://github.com/user-attachments/assets/6b57e726-1cff-40ef-b86c-c7fcaee38943" />
+
 </p>
 
-<p>- Choose a random Username you like and let's use it to login to Client-1.</p>
-<p>- I chose bat.raj because... Why not? 😂</p>
+<p>
+ - Choose username you like and let's use it to login to Client-1.
+</p>
+<p>
+ - I chose bag.pap
+</p>
 <br />
 
 <p>
-<img width="750" alt="CU7" src="https://github.com/user-attachments/assets/192c3116-8252-438c-903b-a4067a1cce80" />
+<img width="1015" alt="Screenshot 2025-06-07 at 11 04 37 AM" src="https://github.com/user-attachments/assets/02723e39-555e-4346-8e80-dc78f78bd972" />
+<img width="1708" alt="Screenshot 2025-06-07 at 11 04 48 AM" src="https://github.com/user-attachments/assets/9e0a7417-82f0-4ae1-b377-39fbe4af3fff" />
 </p>
 
-<p>- Now we will attempt to login to Client-1 with the new user you chose.</p>
-<p>- Do not forget to specify domain in username. </p>
-<p>- mydomain.com\bat.raj and Password1. (mydomain.com\username and Password1) </p>
-<p>- Did it work? bat.raj had zero issues logging in. 😉 </p>
+<p>
+ - Now attempt to login to Client-1 with the new user you chose.
+</p>
+<p>
+ - Make sure you specify domain in username. (mydomain.com) 
+</p>
+<p>
+ - mydomain.com\bag.pap and Password1. (mydomain.com\username and Password1) 
+</p>
+<p>
+ - Did it work? Once we have sucessfully logged in, we have now ensured that we were successful in creating a user database with many users!
+</p>
 <br />
 
 <h3>🛠️ Step 2: Group Policy Objects</h3>
