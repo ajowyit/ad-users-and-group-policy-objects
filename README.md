@@ -3,335 +3,244 @@
  alt="Microsoft Active Directory Logo"/>
 </p>
 
-<h1>Deployment and Configuration of Active Directory in the Cloud</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
+<h1>Creating Users and Group Policy Objects for Active Directory</h1>
+This tutorial outlines creating a User Database and Group Policy Objects for Active Directory within Azure Virtual Machines.<br />
 
-<h2>⚠️ Prerequisites</h2>
+<h2>Prerequisite</h2>
 
-- [Creating Virtual Machines in the Cloud](https://github.com/joshuaheck1/VM-creation)
-  
 - [Create Active Directory Infrastructure in Azure](https://github.com/joshuaheck1/create-ad-infrastructure)
 
-<h2>💻 Environments and Technologies Used</h2>
+<h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
 - Wndows App (for macOS)
 - Remote Desktop
 - Active Directory Domain Services
+- PowerShell
 
-<h2>👨‍💻 Operating Systems Used </h2>
+<h2>Operating Systems Used </h2>
 
 - macOS Sequoia
 - Windows Server 2022
 - Windows 10 (21H2)
 
-<h2>📋 High-Level Deployment and Configuration Steps</h2>
+<h2>High-Level Deployment and Configuration Steps</h2>
 
-- Step 1: Install Active Directory
-- Step 2: Create a Domain Admin User within the Domain
-- Step 3: Join Client-1 to the Domain
-- Step 4: Setup Remote Desktop for non-admin users on Client-1
+- Section 1: Create User Database
+- Section 2: Group Policy Objects 
 
-<h2>⚙️ Deployment and Configuration Steps</h2>
+<h2>Deployment and Configuration Steps</h2>
 
-<h3>Step 1: Install Active Directory</h3>
+<h3>Section 1: Create User Database</h3>
 <p>
-<img width="800" alt="DAD1" src="https://github.com/user-attachments/assets/e448cbc4-30a5-433c-8730-f2a1acccc464" />
+<img width="600" height="500" alt="CU1" src="https://github.com/user-attachments/assets/78ca0b79-47d2-4c1a-8c41-a143b8680c6d" />
 </p>
 
 <p>
-- Login into DC-1 via Remote Desktop.
-<p>- In Server Manager, select "Add roles and features" and click Next.</p>
+- Login into DC-1 via Remote Desktop using the jane_admin account. (mydomain.com\jane_admin and password)
+<p>- From the Start Menu, type PowerShell in the Search Bar, right-click Windows PowerShell ISE, and Run as Admin.</p>
 <br />
 
 <p>
-<img width="800" alt="DAD2" src="https://github.com/user-attachments/assets/6c183f05-52e8-44d7-94d9-cd2dbd424be0" />
-</p>
+<img width="750" alt="CU2" src="https://github.com/user-attachments/assets/ab10520f-6366-401e-bdd2-576e982c1efd" />
+<br />
+
+- Click here --> [SCRIPT](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) to copy the file we need for the User database as seen in Figure 2.
+
+<p>- Select the icon next to Raw in the top right corner. Copy raw file and go back to PowerShell ISE.</p>
+<br />
 
 <p>
-- Select the destination server and click Next. (Only one should be listed, our DC-1).
+<img width="750" alt="CU3" src="https://github.com/user-attachments/assets/9dd1f6f1-366a-41fb-9293-069c852967d7" />
 </p>
+
+<p>- 1. Click the blank page to Create a new file.</p>
+<p>- 2. Paste the Script .</p>
+<p>- 3. Click the Play button to Run the Script.</p>
+<br />
+
+<p>
+<img width="750" alt="CU4" src="https://github.com/user-attachments/assets/3a74ba58-8578-438a-80f9-7d68d63c1843" />
+</p>
+
+<p>- While the thousands of users are being created, take a quick note of the password in the 2nd line of the script. This password is for all the users we are adding. We will need this when we attempt to login as one of the new users.</p>
+<br />
+
+<p>
+<img width="750" alt="CU5" src="https://github.com/user-attachments/assets/b87b5323-61dd-4174-af96-995018e43893" />
+</p>
+
+<p>- We should have enough users by now to attempt to login on Client-1 with their credentials.</p>
+<p>- Let the script keep running and head to the Start Menu. From here, navigate to Avctive Directory Users and Computers.</p>
+<p>- Click OK and select the _EMPLOYEES folder to check out all the users created so far.</p>
+<br />
+
+<p>
+<img width="750" alt="CU6" src="https://github.com/user-attachments/assets/f2ffba9f-88ac-4ca6-b7ab-aa5003c059e5" />
+</p>
+
+<p>- Choose a random Username you like and let's use it to login to Client-1.</p>
+<p>- I chose bat.raj because... Why not? 😂</p>
+<br />
+
+<p>
+<img width="750" alt="CU7" src="https://github.com/user-attachments/assets/192c3116-8252-438c-903b-a4067a1cce80" />
+</p>
+
+<p>- Now we will attempt to login to Client-1 with the new user you chose.</p>
+<p>- Do not forget to specify domain in username. </p>
+<p>- mydomain.com\bat.raj and Password1. (mydomain.com\username and Password1) </p>
+<p>- Did it work? bat.raj had zero issues logging in. 😉 </p>
+<br />
+
+<h3>Section 2: Group Policy Objects</h3>
+
+<p>
+<img width="600" alt="GP2" src="https://github.com/user-attachments/assets/d6583ac0-b04e-496f-b2ff-0ada114649c7" />
+</p>
+
+<p>- Log into DC-1 using jane_admin. (mydomain.com\jane_admin)</p>
+<p>- Once logged in, right-click the Start Menu and select Run.</p>
+<p>- Type in gpmc.msc and click OK.</p>
+<br />
+
+<p>
+<img width="750" alt="GP3" src="https://github.com/user-attachments/assets/62ddd1e6-4715-4a35-960a-b116522a93d4" />
+</p>
+
+<p>- Under mydomain.com, right-click Default Domain Policy and select Edit. See Figure 2.</p>
+<p>- This will open the Group Policy Management Editor.</p>
+<br />
+
+
+<p>
+<img width="900" alt="GP4" src="https://github.com/user-attachments/assets/84693f7b-2243-42ab-8834-ea704aa31074" />
+</p>
+
+<p>- We will need to expand a couple things to find the right path. Here we go. See Figure 3</p>
+<p>- In Group Policy Management Editor -> Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Account Policies.</p>
+<p>- Now, open Account Lockout Policy.</p>
+<br />
+
+<p>
+<img width="900" alt="GP6" src="https://github.com/user-attachments/assets/6cd2af20-a548-4ac7-9645-11bad27e19c8" />
+</p>
+
+<p>- Open Account lockout durtion Properties. Check the box by Define the policy, set for 30 minutes, and click Apply and OK. </p>
+<br />
+
+<p>
+<img width="900" alt="GP7" src="https://github.com/user-attachments/assets/44552a31-91f1-42e5-ac6c-a4881d0ebca0" />
+</p>
+
+<p>- Notice the Suggested Value Changes based off our lockout duration. </p>
+<p>- We want this, so simply click OK. </p>
+<br />
+
+<p>
+<img width="900" alt="GP8" src="https://github.com/user-attachments/assets/4f6d968b-2ba2-438a-b546-e4d0da50014a" />
+</p>
+
+<p>- We can confirm the details of our updated Account Lockout Policy here. </p>
+<p>- I think this takes almost 90 minutes to take effect, but we are not waiting that long because we got stuff to do. </p>
+<p>- Next, we will force update the policy so the changes take effect now.</p>
+<br />
+
+<p>
+<img width="750" alt="GP9" src="https://github.com/user-attachments/assets/b558ed54-2f8b-4174-8b17-32d5502f48bb" />
+</p>
+
+<p>- Jump over to Client-1 and log in as jane_admin. (mydomain.com\jane_admin) </p>
+<p>- Open Command Prompt, enter the command gpupdate /force  and press enter.</p>
+<p>- Once the force update is complete, log out of Client-1.</p>
+<br />
+
+<p>
+<img width="550" alt="GP10" src="https://github.com/user-attachments/assets/c3be8dc3-5884-412e-8f8f-d09bdcd2a2ee" />
+</p>
+
+<p>- Now, we are going to log into Client-1 as another user within the domain but with the wrong password. </p>
+<p>- Attempt 6 logins with the wrong password and see what happens.</p>
+<p>- YOU SHALL NOT PASS! 🧙🏽‍♂️</p>
+<br />
+
+<p>
+<img width="750" alt="GP11" src="https://github.com/user-attachments/assets/b54b14ec-de92-45e6-9bed-ffe1893c9e78" />
+</p>
+
+<p>- Lets get back on DC-1 as jane_admin (mydomain.com\jane_admin) and navigate to Active Directory Users and Computers.</p>
+<p>- We need to find the user (jus.pob) that we just locked out and unlock their account. You can open _EMPLOYEES and scroll for days, depending on what the username is, or right-click mydomain.com and select Find.</p>
+<p>- This will be a lot faster.</p>
+<br />
+
+<p>
+<img width="750" alt="GP13" src="https://github.com/user-attachments/assets/88bce577-435f-4c5a-bbd0-06c57c3b2cf3" />
+</p>
+
+<p>- Enter the username and click Find Now. (jus.pob is who I'm looking for).</p>
+<p>- Click on the username when it appears in the Search results below. Under the Account tab we will find that the user's account is Locked out of the AD Domain Controller as shown in Figure 10.</p>
+<p>- Check the box next to Unlock account, click Apply, and then OK.</p>
+<br />
+
+<p>
+<img width="750" alt="GP13 1" src="https://github.com/user-attachments/assets/d21d27bf-60c2-4c6c-9de7-8c33b6756f5e" />
+</p>
+
+<p>- Now that the account has been unlocked, try log back into Client-1 as that same user. (mydomain.com\jus.pob)</p>
+<p>- You will know right a way if it worked or not. I went to PowerShell after logging on and entered "whoami". See figure 11.😆  </p>
 <br />
 
 <table>
   <tr>
     <td>
-      <img width="1000" alt="DAD3" src="https://github.com/user-attachments/assets/ff9d92da-e5ff-42b4-909f-74830be3e249" />
+      <img width="1000" alt="GP14" src="https://github.com/user-attachments/assets/67b863ca-28f6-4b05-8e9e-cf7904863144" />
     </td>
     <td>
-      <img width="1000" alt="DAD4" src="https://github.com/user-attachments/assets/2d876eea-6b39-4958-bdda-62fc94070b81" />
+      <img width="1000" alt="GP15" src="https://github.com/user-attachments/assets/82732951-dcda-47e3-b783-e585b4be4803" />
     </td>
   </tr>
 </table>
 <p>
- - For Server Roles, select Active Directotry Domain Services (ADDS) and click Add Features.
-<p> - Confirm the box is checked next to ADDS and click Next.</p>
-<br />
-
-<p>
-<img width="800" alt="DAD5" src="https://github.com/user-attachments/assets/38137c49-ed14-42fa-a5d2-22581ef9b503" />
-</p>
-<p>
- - Check the box next to Restart the destination server automatically if required. Click Yes on the pop-up and click Install.
-<p> - Once the Feature installation finishes, simply click Close.</p>
-<br />
-
-<p>
-<img width="800" alt="DAD7" src="https://github.com/user-attachments/assets/d15cbaa1-35a8-47dc-80fa-e81db8cba77f" />
-</p>
-
-<p>
-- Now, locate the flag and yellow tringle at the top right of the sreen in Server Manager and click on it.
-</p>
-<p>- Next, select Promote this server to a domain controller.</p>
+ - We can do a bunch of stuff with the user accounts in Active Directory Users and Computers. We can disable accounts if needed. Although that might be more of a HR thing, but you never know.</p> 
+<p>- You can disable the username that we just unlocked or pick one you don't like and vote them off the domain. 🤣</p>
+<p>- Then, try to log into Client-1 as the exiled user and see what happens.
+<p>- Figure 12 shows the long way to find the user and Figure 13 shows the express lane.</p>
 <br />
 
 <table>
   <tr>
     <td>
-      <img width="1000" alt="DAD8" src="https://github.com/user-attachments/assets/59bd513e-b628-44f3-9cb4-9a83cfc6989d" />
+      <img width="1000" alt="GP16" src="https://github.com/user-attachments/assets/731c7e88-3356-4bdd-baf5-9c41ea9a7659" />
     </td>
     <td>
-      <img width="1000" alt="DAD9" src="https://github.com/user-attachments/assets/55e038e6-f13b-4388-bb5a-e13f3d33baa2" />
+      <img width="1000" alt="GP17" src="https://github.com/user-attachments/assets/5a349fb3-fb8d-4b41-a61c-eeafe64a9705" />
     </td>
   </tr>
 </table>
 <p>
- - Under "Select the deployment operation", select Add a new forest and name it mydomain.com -> click Next.
-<p> - For the DSRM password, just use Password1. We will not use this at all. Click Next.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD10" src="https://github.com/user-attachments/assets/64d0adad-2493-4946-a741-bc42363c0b97" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD11" src="https://github.com/user-attachments/assets/7227030b-594e-484d-8e0c-dd27fa9b9670" />
-    </td>
-  </tr>
-</table>
-<p>
- - Uncheck the DNS delegation options and click Next. Keep clicking Next for the next couple on options until you see Figure 10.
-<p> - Now that all the options have been configured, click Install to begin installation.</p>
-<p>- Once the install is finished, DC-1 will reboot. This might take a couple minutes because DC-1 is now on the domain.</p>
+ - We can also reset the password if needed. For example, during the account lockout scenario earlier, when we unlocked the account we would have reset the password and then had the user create a new password for security reasons. </p> 
+<p>- Same as before, Figure 14 shows the long way to find the user and Figure 15 shows the express lane.</p>
 <br />
 
 <p>
-<img width="800" alt="Screenshot 2025-04-23 at 1 12 32 AM" src="https://github.com/user-attachments/assets/77357c2e-c68f-4366-af58-6acca7881af0" />
+<img width="750" alt="GP18" src="https://github.com/user-attachments/assets/8e309698-4ff9-4e39-9a2e-897e4a4d46d0" />
 </p>
-<p>
- - Remote Desktop back into DC-1. Since DC-1 is now a domain controller and on the domain, you have to specify which domain, and that you want to log on as a domain user.</p>  
-<p>- Enter "mydomain.com\jheck1" (mydomain.com\username)</p>
-<p>- This will log us in as a specific user within the domain.</p>
+
+<p>- One last thing before we end this project. Log into Client-1 as jane_admin (mydomain.com\jane_admin) </p>
+<p>- From the Start Menu, search eventvwr.msc and Open as Admin. </p>
+<p>- This will take us to the Event Viewer and allow us to look at Security Logs.</p>
+<p>- Expand Window Logs -> right-click Security -> click Find. Type in the username that was locked out earlier. (jus.pob)</p>
+<p>- We can view the logs and see how many log in attempts the user made with timestamps.</p>
 <br />
 
-<h3>Step 2: Create a Domain Admin User within the Domain</h3>
+<h2>Conclusion</h2>
 
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD13" src="https://github.com/user-attachments/assets/bef99c17-6550-48ac-9366-2466879d57e9" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD14" src="https://github.com/user-attachments/assets/b8e40402-5612-44f1-868d-53c6dfc0e55d" />
-    </td>
-  </tr>
-</table>
-<p>
- - Once you are back in DC-1, from the Start Menu -> select Windows Administrative Tools -> open Active Directory Users & Computers.
-<p> - Here we will create a new Organizational Unit (OU). </p>
-<p>- Right-click mydomain.com -> New -> Organizational Unit. Name this OU as _EMPLOYEES (don't forget the underscore). Click OK.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD15" src="https://github.com/user-attachments/assets/300ef3de-f8ed-4e94-8938-46ade24aaef8" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD16" src="https://github.com/user-attachments/assets/756394d7-c8dc-4a37-9ecd-108c50dff317" />
-    </td>
-  </tr>
-</table>
-<p>- We will need to create another new Organizational Unit (OU).</p>
-<p>- Right-click mydomain.com -> New -> Organizational Unit. Name this OU as _ADMINS (don't forget the underscore). Click OK.</p>
-<br />
-
-<p>
-<img width="800" alt="DAD17" src="https://github.com/user-attachments/assets/9cf665b5-72a9-4e36-a53a-bb5049b07ce3" />
-</p>
-<p>
- - Now, right-click mydomain.com and select Refresh. This will move our new OUs to the top of the list for easier location and access.</p>  
-<br />
-
-<p>
-<img width="800" alt="DAD18" src="https://github.com/user-attachments/assets/86ae7e0f-d9e2-4a81-8bba-ec6066f5d7b0" />
-</p>
-<p>- Next, we will create a new user.</p> 
- <p>- Right-click _ADMINS -> select New -> click User.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD19" src="https://github.com/user-attachments/assets/4848b413-6391-40f2-bdb4-d9d79531988b" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD20" src="https://github.com/user-attachments/assets/1fbf670b-c6bb-4683-b57e-e3ad8e4e6155" />
-    </td>
-  </tr>
-</table>
-<p>- Name the new user "Jane Doe" with the username "jane_admin" and click Next.</p>
-<p>- Use the same password as DC-1 to keep it simple. Uncheck "User must change password at next login" and check "Password never expires". (We wouldn't do this in the real world for security purposes, but its ok for this project 😉).</p>
-<br />
-
-<p>
-<img width="500" height="400" alt="DAD21" src="https://github.com/user-attachments/assets/a972929d-c10a-4b24-b6d8-d9261fba05bc" />
-</p>
-<p>- Confirm the new user's information and click Finish.</p> 
-<br />
-
-<p>
-<img width="800" alt="DAD23" src="https://github.com/user-attachments/assets/a8c61736-e95a-4adf-97f3-2f5cf010920c" />
-</p>
-<p>- Now, we will make "Jane Doe" a Domain Admin by adding this account to the built-in "Domain Admins" Security Group. </p> 
-<p>- Open the _ADMINS folder -> right-click Jane Doe -> select Properties.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD24" src="https://github.com/user-attachments/assets/e57fd05a-6735-448f-b1a9-87ac0b7768a5" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD25" src="https://github.com/user-attachments/assets/229ab0d9-183a-4267-9868-a0ba8d777a03" />
-    </td>
-  </tr>
-</table>
-<p>- Select "Member of" and click "Add".</p>
-<p>- Type in "domain admins" and click "Check Names".</p>
-<p>- Notice that after clicking "Check Names", "Domain Admins" is now capitalized and underlined. Click OK. (See figure 23)</p>
-<br />
-
-<p>
-<img width="460" height="450" alt="DAD26" src="https://github.com/user-attachments/assets/9059c515-51f3-4185-b626-cb3b2f368e06" />
-</p>
-<p>- We can confirm that Jane Doe is now a Domain Admin. The Force is strong with this one!🧘🏽‍♀️ (Click OK).</p>
-<p>- Next, we will log out and close the DC-1 connection. Then, we will log back into DC-1 with Jane Doe's Admin login and we'll use this account from now on. (Note Jane Doe's login info)</p>
-<br />
-
-<h3>Step 3: Join Client-1 to the Domain</h3>
-
-<p>
-<img width="800" alt="DAD28" src="https://github.com/user-attachments/assets/6f9d0f46-f77e-4a4e-957d-20031cd8eaaa" />
-</p>
-<p>- Now, we will login to Client-1 as the original local admin. (jheck1) </p>
-<p>- Right-click Start Menu -> select System </p>
-<p>- Take a second and look over Figure 25. There is alot going on here and the windows pop-up in a weird order. </p>
-<p>- 1. Select "Rename this PC (advanced)". If you don't see this option at first, maximze the window or expand it to the right a little.</p>
-<p>- 2. In the "Computer Name" tab, click "Change".</p>
-<p>- 3. Under "Member of" select "Domain" and type in mydomain.com. </p>
-<p>- 4. Click OK.</p>
-<br />
-
-
-<p>
-<img width="800" alt="DAD29" src="https://github.com/user-attachments/assets/2bea523f-637c-4d03-9bfd-58d63b6f712d" />
-
-</p>
-<p>- To join the domain, we will use the jane_admin account. </p>
-<p>- Enter in mydomain.com\jane_admin and password. click OK. </p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD30" src="https://github.com/user-attachments/assets/b3fdd933-ddad-4be7-8dd5-de8ae77682ee" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD31" src="https://github.com/user-attachments/assets/b2f1a5ce-f789-46e6-8c98-e69f62383f15" />
-    </td>
-  </tr>
-</table>
-<p>- Once you clicked OK, the pop-up happened behind the System screen. Close that and you will see it as in Figure 27.</p>
-<p>- Click OK.</p>
-<p>- Client-1 will need to restart. Click Restart Now.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD33" src="https://github.com/user-attachments/assets/101b154b-33f6-4f94-a8ea-193d61e045a7" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD34" src="https://github.com/user-attachments/assets/c26e0870-57d4-488b-a383-c9e47ec09d3d" />
-    </td>
-  </tr>
-</table>
-<p>- We will go to DC-1 now. If you just closed the connection earlier, simply log back in using the jane_admin account. (mydomain.com\jane_admin) </p>
-<p>- From the Start Menu -> Active Directory Users and Computers (ADUS). </p>
-<p>- Expand mydomain.com -> select Computers. We can verify Client-1 is here and successfully joined the domain. Figure 29</p>
-<p>- Now, we will create a new OU named _CLIENTS</p>
-<p>- Right-click mydomain.com -> select New -> click Organizational Unit</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="DAD36" src="https://github.com/user-attachments/assets/4cd8b573-cfee-42e6-8df2-59d4a8242d24" />
-    </td>
-    <td>
-      <img width="1000" alt="DAD37" src="https://github.com/user-attachments/assets/774bf3c8-40aa-4b6b-a3c5-8ef40cbac197" />
-    </td>
-  </tr>
-</table>
-<p>- Go back to Computers and drag Client-1 to the new _CLIENTS OU. </p>
-<p>- Click Yes on the pop-up. You can Refresh mydomain.com to move _CLIENTS to the top with _ADMINS & _EMPLOYEES if you want.</p>
-<br />
-
-<h3>Step 4: Setup Remote Desktop for non-admin users on Client-1</h3>
-
-<p>
-<img width="500" height="400" alt="Screenshot 2025-04-23 at 11 21 16 AM" src="https://github.com/user-attachments/assets/147451a6-923c-4f87-b233-f63051053e16" />
-</p>
-<p>- Login into Client-1 with the jane_admin account.</p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="RD1" src="https://github.com/user-attachments/assets/4c7f51ab-4d66-42fd-a001-23bbf927603a" />
-    </td>
-    <td>
-      <img width="1000" alt="RD2" src="https://github.com/user-attachments/assets/9b9e27b9-11d0-4721-8709-a6a4dffb6a28" />
-    </td>
-  </tr>
-</table>
-<p>- Right-click Start Menu -> select System -> click Remote Desktop. </p>
-<p>- In Remote Desktop Users, click Add. </p>
-<br />
-
-<table>
-  <tr>
-    <td>
-      <img width="1000" alt="RD3" src="https://github.com/user-attachments/assets/f6115248-d541-4fe0-8d65-9dacfaf79815" />
-    </td>
-    <td>
-      <img width="1000" alt="RD4" src="https://github.com/user-attachments/assets/ac7c5331-de75-4065-8c37-8e8d62cd4ac0" />
-    </td>
-  </tr>
-</table>
-<p>- Type in domain users and click Check Names. Domain Users will capitalize and be underlined. Click OK. </p>
-<p>- Confirm that MYDOMAIN\Domain Users is showing under Remote Desktop Users and click OK. </p>
-<p>- Now, all users in the Domain Users group can Remote Desktop into Client-1. </p>
-<br />
-
-<h2>✅ Conclusion</h2>
-
-<p>This concludes our project. We did it! AD has been successfully deployed. We will add a bunch of users next. Don't forget to Stop (turn off) the VMs in Azure. As always, Thank You for your time and viewing this Project. We'll see you on the next one! 😎      
+<p>This concludes our project.  We added a ton of users to the domain and setup some Group Policy Objects. Playing a Domain Admin is pretty interesting and we barley scratched the surface. Don't forget to Stop (turn off) the VMs in Azure. As always, Thank You for your time and viewing this Project. We'll see you on the next one! 😎      
 </p>
 <br />
+
+
+
 
 
 
