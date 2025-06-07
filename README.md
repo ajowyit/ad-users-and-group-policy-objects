@@ -15,7 +15,7 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 
 - Microsoft Azure (Virtual Machines/Compute)
 - Wndows App (for macOS)
-- Remote Desktop
+- Remote Desktop/Windows App
 - Active Directory Domain Services
 - PowerShell
 
