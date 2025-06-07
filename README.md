@@ -11,7 +11,7 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 - [Create Active Directory Infrastructure in Azure](https://github.com/ajowyit/create-ad-infrastructure)
 - [Deployment and Configuration of Active Directory in the Cloud](https://github.com/ajowyit/ad-deployment-configuration)
 
-<h2>Environments and Technologies Used</h2>
+<h2>💻 Environments and Technologies Used</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
 - Wndows App (for macOS)
@@ -19,20 +19,20 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 - Active Directory Domain Services
 - PowerShell
 
-<h2>Operating Systems Used </h2>
+<h2>👨‍💻 Operating Systems Used </h2>
 
 - macOS Sequoia
 - Windows Server 2022
 - Windows 10 (21H2)
 
-<h2>High-Level Deployment and Configuration Steps</h2>
+<h2>🪜 High-Level Steps</h2>
 
 - Section 1: Create User Database
 - Section 2: Group Policy Objects 
 
 <h2>Deployment and Configuration Steps</h2>
 
-<h3>Section 1: Create User Database</h3>
+<h3>🛠️ Step 1: Create User Database</h3>
 <p>
 <img width="600" height="500" alt="CU1" src="https://github.com/user-attachments/assets/78ca0b79-47d2-4c1a-8c41-a143b8680c6d" />
 </p>
@@ -94,7 +94,7 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 <p>- Did it work? bat.raj had zero issues logging in. 😉 </p>
 <br />
 
-<h3>Section 2: Group Policy Objects</h3>
+<h3>🛠️ Step 2: Group Policy Objects</h3>
 
 <p>
 <img width="600" alt="GP2" src="https://github.com/user-attachments/assets/d6583ac0-b04e-496f-b2ff-0ada114649c7" />
