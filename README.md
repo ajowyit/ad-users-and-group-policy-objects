@@ -135,14 +135,18 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
  - mydomain.com\bag.pap and Password1. (mydomain.com\username and Password1) 
 </p>
 <p>
- - Did it work? Once we have sucessfully logged in, we have now ensured that we were successful in creating a user database with many users!
+ - Did it work? Make sure you have no issues logging in!
 </p>
 <br />
 
 <h3>🛠️ Step 2: Group Policy Objects</h3>
 
 <p>
-<img width="600" alt="GP2" src="https://github.com/user-attachments/assets/d6583ac0-b04e-496f-b2ff-0ada114649c7" />
+<img width="784" alt="Screenshot 2025-06-07 at 4 01 45 PM" src="https://github.com/user-attachments/assets/007241c6-6bd0-4a02-98da-668c2fe2d0ac" />
+
+<img width="400" alt="Screenshot 2025-06-07 at 4 01 58 PM" src="https://github.com/user-attachments/assets/9432d18f-9d64-4980-a8bd-6695db15ce8a" />
+
+<img width="401" alt="Screenshot 2025-06-07 at 4 02 12 PM" src="https://github.com/user-attachments/assets/6c475f03-39be-49b2-a8b4-8b35dcc0c82e" />
 </p>
 
 <p>- Log into DC-1 using jane_admin. (mydomain.com\jane_admin)</p>
@@ -151,72 +155,120 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 <br />
 
 <p>
-<img width="750" alt="GP3" src="https://github.com/user-attachments/assets/62ddd1e6-4715-4a35-960a-b116522a93d4" />
+ <img width="827" alt="Screenshot 2025-06-07 at 4 03 52 PM" src="https://github.com/user-attachments/assets/d57c3f56-a2fd-490f-b644-1b0d22352314" />
+
+ <img width="1224" alt="Screenshot 2025-06-07 at 4 06 12 PM" src="https://github.com/user-attachments/assets/3c1636fa-69ae-4d12-8d66-3b9f65938716" />
 </p>
 
-<p>- Under mydomain.com, right-click Default Domain Policy and select Edit. See Figure 2.</p>
-<p>- This will open the Group Policy Management Editor.</p>
+<p>
+ - Under Domains -> mydomain.com -> right-click Default Domain Policy and select Edit. See Figure 2.
+</p>
+<p>
+ - This will open the Group Policy Management Editor.
+</p>
 <br />
 
 
 <p>
-<img width="900" alt="GP4" src="https://github.com/user-attachments/assets/84693f7b-2243-42ab-8834-ea704aa31074" />
+<img width="960" alt="Screenshot 2025-06-07 at 4 06 57 PM" src="https://github.com/user-attachments/assets/ef3306ad-3aad-4a2d-939d-732d2b2aaf6a" />
 </p>
 
-<p>- We will need to expand a couple things to find the right path. Here we go. See Figure 3</p>
-<p>- In Group Policy Management Editor -> Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Account Policies.</p>
-<p>- Now, open Account Lockout Policy.</p>
+
+<p>
+ - In Group Policy Management Editor click Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Account Policies -> right click Account Lockout Policy -> click Open
+</p>
+
 <br />
 
 <p>
-<img width="900" alt="GP6" src="https://github.com/user-attachments/assets/6cd2af20-a548-4ac7-9645-11bad27e19c8" />
+<img width="958" alt="Screenshot 2025-06-07 at 4 07 28 PM" src="https://github.com/user-attachments/assets/915de0ac-3bf2-4411-a176-a7446b658c1d" />
+<img width="418" alt="Screenshot 2025-06-07 at 4 07 36 PM" src="https://github.com/user-attachments/assets/e690dace-259c-40f3-94d2-8bf615b4e68b" />
+<img width="421" alt="Screenshot 2025-06-07 at 4 07 48 PM" src="https://github.com/user-attachments/assets/742237b5-0b2b-4d7a-b792-7b55db9d4a91" />
 </p>
 
-<p>- Open Account lockout durtion Properties. Check the box by Define the policy, set for 30 minutes, and click Apply and OK. </p>
+<p>
+ - Open Account lockout durtion Properties. The Account lockout duration Properties window will pop up. Check the box by "Define this policy setting", set it for 30 minutes, and click Apply and then click OK. 
+</p>
 <br />
 
 <p>
-<img width="900" alt="GP7" src="https://github.com/user-attachments/assets/44552a31-91f1-42e5-ac6c-a4881d0ebca0" />
+<img width="628" alt="Screenshot 2025-06-07 at 4 08 07 PM" src="https://github.com/user-attachments/assets/f39f1c4e-51ee-456d-a128-eb7fca4a4496" />
 </p>
 
-<p>- Notice the Suggested Value Changes based off our lockout duration. </p>
-<p>- We want this, so simply click OK. </p>
+<p>
+ - The Suggested Value Changes window will pop up. Review the changes and click OK because we want them. 
+</p>
 <br />
 
 <p>
-<img width="900" alt="GP8" src="https://github.com/user-attachments/assets/4f6d968b-2ba2-438a-b546-e4d0da50014a" />
+<img width="961" alt="Screenshot 2025-06-07 at 4 08 49 PM" src="https://github.com/user-attachments/assets/3d12ada6-4e80-4f4e-a4eb-12c74c6d1fd1" />
+
+<img width="419" alt="Screenshot 2025-06-07 at 4 08 59 PM" src="https://github.com/user-attachments/assets/67a30360-4e97-466b-8af6-1378166dafba" />
+<img width="421" alt="Screenshot 2025-06-07 at 4 09 20 PM" src="https://github.com/user-attachments/assets/c637cbd8-d48e-43a0-b08f-925d4e26388e" />
+
 </p>
 
-<p>- We can confirm the details of our updated Account Lockout Policy here. </p>
-<p>- I think this takes almost 90 minutes to take effect, but we are not waiting that long because we got stuff to do. </p>
-<p>- Next, we will force update the policy so the changes take effect now.</p>
+<p>
+ - Confirm the details of our updated Account Lockout Policy. 
+</p>
+<p>
+ - Next we want to enable administrator account lockout
+</p>
+<p>
+ - From "Allow Adminisgrator account lockout", open the Allow Administator account lockout properties window. Then check the box next to "Define this policy setting:" and then select "Enabled". Click "Apply" and then click "OK".
+</p>
+<p>
+ - We have finished with our Group Policy changes. Usually, this should take about 90 minutes to take effect, but we are going to force update the policy so the changes take effect now.
+</p>
 <br />
 
 <p>
-<img width="750" alt="GP9" src="https://github.com/user-attachments/assets/b558ed54-2f8b-4174-8b17-32d5502f48bb" />
+<img width="785" alt="Screenshot 2025-06-07 at 4 10 44 PM" src="https://github.com/user-attachments/assets/cf6b4798-b462-4518-8ba2-a1c7f20436ce" />
+<img width="979" alt="Screenshot 2025-06-07 at 4 11 01 PM" src="https://github.com/user-attachments/assets/4824a306-972e-4b2d-805e-fe0ba1d5ac8e" />
+<img width="980" alt="Screenshot 2025-06-07 at 4 11 13 PM" src="https://github.com/user-attachments/assets/50e80b4c-0d54-45ab-9f82-c2ae175ac705" />
+<img width="980" alt="Screenshot 2025-06-07 at 4 11 40 PM" src="https://github.com/user-attachments/assets/37b54012-7834-47b0-bc66-935f7e48e0f2" />
 </p>
 
-<p>- Jump over to Client-1 and log in as jane_admin. (mydomain.com\jane_admin) </p>
-<p>- Open Command Prompt, enter the command gpupdate /force  and press enter.</p>
-<p>- Once the force update is complete, log out of Client-1.</p>
+<p>
+ - In Client-1 and log in as jane_admin. (mydomain.com\jane_admin) 
+</p>
+<p>
+ - Open Command Prompt. Enter the command gpupdate /force. Press enter.
+</p>
+<p>
+ - Once the force update is finished, log out of Client-1.
+</p>
 <br />
 
 <p>
-<img width="550" alt="GP10" src="https://github.com/user-attachments/assets/c3be8dc3-5884-412e-8f8f-d09bdcd2a2ee" />
+<img width="1012" alt="Screenshot 2025-06-07 at 4 13 32 PM" src="https://github.com/user-attachments/assets/5a680ace-91d0-46c7-b599-931a52565b61" />
+<img width="1016" alt="Screenshot 2025-06-07 at 4 13 46 PM" src="https://github.com/user-attachments/assets/c0e165ef-af77-4565-9b45-ea0b940de467" />
 </p>
 
-<p>- Now, we are going to log into Client-1 as another user within the domain but with the wrong password. </p>
-<p>- Attempt 6 logins with the wrong password and see what happens.</p>
-<p>- YOU SHALL NOT PASS! 🧙🏽‍♂️</p>
+<p>
+ - Now, we are going to try to log into Client-1 as a user within the domain but with the wrong password 6 times. 
+</p>
+<p>
+ - See what happens after too many invalid sign in attempts.
+</p>
 <br />
 
 <p>
-<img width="750" alt="GP11" src="https://github.com/user-attachments/assets/b54b14ec-de92-45e6-9bed-ffe1893c9e78" />
+<img width="756" alt="Screenshot 2025-06-07 at 4 14 59 PM" src="https://github.com/user-attachments/assets/09937d4f-7f21-4203-ad31-ae916bb9102d" />
+<img width="519" alt="Screenshot 2025-06-07 at 4 15 13 PM" src="https://github.com/user-attachments/assets/c3ab2071-f058-42d0-801f-f5894a7bd5c0" />
+
+<img width="516" alt="Screenshot 2025-06-07 at 4 15 23 PM" src="https://github.com/user-attachments/assets/fec40cdc-53af-4141-a21d-7cb4d989902f" />
+
 </p>
 
-<p>- Lets get back on DC-1 as jane_admin (mydomain.com\jane_admin) and navigate to Active Directory Users and Computers.</p>
-<p>- We need to find the user (jus.pob) that we just locked out and unlock their account. You can open _EMPLOYEES and scroll for days, depending on what the username is, or right-click mydomain.com and select Find.</p>
-<p>- This will be a lot faster.</p>
+<p>
+ - Log back on DC-1 as jane_admin (mydomain.com\jane_admin). Open up Active Directory Users and Computers.
+</p>
+<p>
+ - Find the user (bal.lade) that we just locked out. Unlock the account. Right-click mydomain.com and select Find.</p>
+<p>
+ - Type in the username (bal.lade) and click "Find Now". You should see the user pop up under Search results.
+</p>
 <br />
 
 <p>
