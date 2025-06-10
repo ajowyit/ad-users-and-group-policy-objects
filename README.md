@@ -1,5 +1,4 @@
-<img width="1527" alt="Screenshot 2025-06-07 at 10 44 46 AM" src="https://github.com/user-attachments/assets/cdf00331-b26a-4946-ae01-ea7dc506f5a5" /><p align="center">
-<img width="450" height="250" alt="Microsoft Active Directory Logo" src="https://github.com/user-attachments/assets/cd75c7f5-fba1-4682-a616-dc487e761fbc"
+<img width="413" alt="Screenshot 2025-06-07 at 4 16 00 PM" src="https://github.com/user-attachments/assets/659cb78b-7adf-4dfa-86b5-f264ecebff34" /><img width="450" height="250" alt="Microsoft Active Directory Logo" src="https://github.com/user-attachments/assets/cd75c7f5-fba1-4682-a616-dc487e761fbc"
  alt="Microsoft Active Directory Logo"/>
 </p>
 
@@ -272,68 +271,123 @@ This tutorial outlines creating a User Database and Group Policy Objects for Act
 <br />
 
 <p>
-<img width="750" alt="GP13" src="https://github.com/user-attachments/assets/88bce577-435f-4c5a-bbd0-06c57c3b2cf3" />
+<img width="413" alt="Screenshot 2025-06-07 at 4 15 49 PM" src="https://github.com/user-attachments/assets/8a256810-371c-4b64-9b6d-80a9b2a69a61" />
+<img width="413" alt="Screenshot 2025-06-07 at 4 16 00 PM" src="https://github.com/user-attachments/assets/ec78813c-1445-48a6-ab46-b19d1713b39e" />
 </p>
 
-<p>- Enter the username and click Find Now. (jus.pob is who I'm looking for).</p>
-<p>- Click on the username when it appears in the Search results below. Under the Account tab we will find that the user's account is Locked out of the AD Domain Controller as shown in Figure 10.</p>
-<p>- Check the box next to Unlock account, click Apply, and then OK.</p>
+<p>
+ - Double click the username under Search results and the account's Properties window should pop up.
+</p>
+<p>
+ - Check the box next to Unlock account. Click "Apply", then click "OK".
+</p>
 <br />
 
 <p>
-<img width="750" alt="GP13 1" src="https://github.com/user-attachments/assets/d21d27bf-60c2-4c6c-9de7-8c33b6756f5e" />
+<img width="1710" alt="Screenshot 2025-06-07 at 4 17 01 PM" src="https://github.com/user-attachments/assets/92fa90df-ca65-4f33-b6e2-0993aed25e53" />
+<img width="788" alt="Screenshot 2025-06-07 at 4 18 41 PM" src="https://github.com/user-attachments/assets/1dcd5ead-075e-42d0-b2a2-c2c0abe17a5e" />
+<img width="859" alt="Screenshot 2025-06-07 at 4 18 54 PM" src="https://github.com/user-attachments/assets/67c53492-440e-42a5-b3bc-56570a95abfe" />
 </p>
 
-<p>- Now that the account has been unlocked, try log back into Client-1 as that same user. (mydomain.com\jus.pob)</p>
-<p>- You will know right a way if it worked or not. I went to PowerShell after logging on and entered "whoami". See figure 11.😆  </p>
+<p>
+ - Try log back into Client-1 as that same user now that it has been unlocked. (mydomain.com\bal.lade)</p>
+<p>
+ - (Optional) Open up Windows Powershell and type in the command whoami and press Enter. You should see the user's username appear.
+</p>
 <br />
 
 <table>
   <tr>
     <td>
-      <img width="1000" alt="GP14" src="https://github.com/user-attachments/assets/67b863ca-28f6-4b05-8e9e-cf7904863144" />
+     <img width="755" alt="Screenshot 2025-06-07 at 4 20 25 PM" src="https://github.com/user-attachments/assets/56661588-ea66-4f1e-b382-d3bbf6d7005d" />
     </td>
     <td>
-      <img width="1000" alt="GP15" src="https://github.com/user-attachments/assets/82732951-dcda-47e3-b783-e585b4be4803" />
+      <img width="516" alt="Screenshot 2025-06-07 at 4 21 02 PM" src="https://github.com/user-attachments/assets/143189be-1a76-4e45-81c7-ee0b5876549a" />
     </td>
   </tr>
 </table>
 <p>
- - We can do a bunch of stuff with the user accounts in Active Directory Users and Computers. We can disable accounts if needed. Although that might be more of a HR thing, but you never know.</p> 
-<p>- You can disable the username that we just unlocked or pick one you don't like and vote them off the domain. 🤣</p>
-<p>- Then, try to log into Client-1 as the exiled user and see what happens.
-<p>- Figure 12 shows the long way to find the user and Figure 13 shows the express lane.</p>
+ - Another thing we can do in Active Directory Users and Computers is disable accounts.
+</p> 
+<p>
+ - We can disable the username that we just unlocked or a different one to vote them off of the domain.
+</p>
+<p>
+ - Here are two different ways to disable an account, one uses Find, to search for the user, the other we look through _EMPLOYEES to find the user. Disable a user.
+</p>
 <br />
+
+<p>
+ <img width="1013" alt="Screenshot 2025-06-07 at 4 21 34 PM" src="https://github.com/user-attachments/assets/1b0805d2-d532-4bde-b9a2-bf13cf69bfad" />
+</p>
+<p>
+ - See what happens when we try to log in as a disabled user. Go back and reenable the account.
+</p>
+
 
 <table>
   <tr>
     <td>
-      <img width="1000" alt="GP16" src="https://github.com/user-attachments/assets/731c7e88-3356-4bdd-baf5-9c41ea9a7659" />
+      <img width="755" alt="Screenshot 2025-06-07 at 4 22 13 PM" src="https://github.com/user-attachments/assets/19cb56af-23ee-4675-a008-1623ac3e4cb9" />
     </td>
     <td>
-      <img width="1000" alt="GP17" src="https://github.com/user-attachments/assets/5a349fb3-fb8d-4b41-a61c-eeafe64a9705" />
+     <img width="517" alt="Screenshot 2025-06-07 at 4 22 29 PM" src="https://github.com/user-attachments/assets/cc71e4e7-772d-47d0-820c-2951f6b67699" />
     </td>
   </tr>
 </table>
 <p>
- - We can also reset the password if needed. For example, during the account lockout scenario earlier, when we unlocked the account we would have reset the password and then had the user create a new password for security reasons. </p> 
-<p>- Same as before, Figure 14 shows the long way to find the user and Figure 15 shows the express lane.</p>
+ - We can also reset passwords if needed from Active Directory Users and Computers.
+</p> 
+<p>- Same as before, The above images show how to reset passwords by scrolling through _EMPLOYEES and through Find. Let's reset a password</p>
 <br />
 
 <p>
-<img width="750" alt="GP18" src="https://github.com/user-attachments/assets/8e309698-4ff9-4e39-9a2e-897e4a4d46d0" />
+ <img width="382" alt="Screenshot 2025-06-07 at 4 22 35 PM" src="https://github.com/user-attachments/assets/8c155ef9-d3ed-49c8-bcec-c5364e4a376d" />
+ <img width="381" alt="Screenshot 2025-06-07 at 4 22 52 PM" src="https://github.com/user-attachments/assets/6575603a-30c2-4cc2-863a-9be2ca16b06c" />
+</p>
+<p>
+ - Type in the new password under "New password:". Type it again under "Confirm password:". Click "OK" to reset the password.
+</p>
+<p>
+ - Test the password reset by logging into the account. 
 </p>
 
-<p>- One last thing before we end this project. Log into Client-1 as jane_admin (mydomain.com\jane_admin) </p>
-<p>- From the Start Menu, search eventvwr.msc and Open as Admin. </p>
-<p>- This will take us to the Event Viewer and allow us to look at Security Logs.</p>
-<p>- Expand Window Logs -> right-click Security -> click Find. Type in the username that was locked out earlier. (jus.pob)</p>
-<p>- We can view the logs and see how many log in attempts the user made with timestamps.</p>
+<p>
+<img width="786" alt="Screenshot 2025-06-07 at 4 24 32 PM" src="https://github.com/user-attachments/assets/a9e4c209-e610-45a1-82fa-ed26b997d70f" />
+<img width="788" alt="Screenshot 2025-06-07 at 4 25 17 PM" src="https://github.com/user-attachments/assets/48c44c35-a11d-46f9-9b7d-e7b0484a8dfb" />
+<img width="1094" alt="Screenshot 2025-06-07 at 4 25 50 PM" src="https://github.com/user-attachments/assets/fdd9ad6e-c65a-413b-b80c-3f57a4b13f5f" />
+<img width="1094" alt="Screenshot 2025-06-07 at 4 26 12 PM" src="https://github.com/user-attachments/assets/da64f0bc-3687-474b-9b1b-a8c4e816de4d" />
+<img width="428" alt="Screenshot 2025-06-07 at 4 26 23 PM" src="https://github.com/user-attachments/assets/c1b7ec31-6698-4539-b5ec-e263ef9d3c08" />
+<img width="1091" alt="Screenshot 2025-06-07 at 4 28 22 PM" src="https://github.com/user-attachments/assets/e9d1af72-5345-444e-91c6-5bae27ecebc0" />
+
+ 
+</p>
+
+<p>
+ - Finally, before we end the project, log into Client-1 as jane_admin (mydomain.com\jane_admin) 
+</p>
+<p>
+ - From the Start Menu, open up eventvwr.msc and click "Run as administrator".
+</p>
+<p>
+ - The Event Viewer window will pop up.
+</p>
+<p>
+ - Now we want to look at security logs. Expand Window Logs. 
+</p>
+<p>
+ - Right-click Security -> click Find.
+</p>
+<p>
+ -  Type in the username that was locked out earlier after too many incorrect sign in attempts (bal.lade).
+<p>
+ - Observe the logs and see the log in attempts the user made with timestamps.
+</p>
 <br />
 
 <h2>Conclusion</h2>
 
-<p>This concludes our project.  We added a ton of users to the domain and setup some Group Policy Objects. Playing a Domain Admin is pretty interesting and we barley scratched the surface. Don't forget to Stop (turn off) the VMs in Azure. As always, Thank You for your time and viewing this Project. We'll see you on the next one! 😎      
+<p>This concludes the project. We added maby users to the domain and set up some Group Policy Objects. Don't forget to Stop (turn off) the VMs in Azure once you're done! 
 </p>
 <br />
 
